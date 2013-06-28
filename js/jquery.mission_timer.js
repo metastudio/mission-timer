@@ -1,10 +1,11 @@
 /*!jQuery Mission Timer*/
 /**
+ *
  * Version: 1.0.0 (28/06/2013)
  * Requires: jQuery v1.7+
  *
- * Copyright (c) 2013 Alexander Ulitin
- *
+ * Based on jQuery Knob plugin https://github.com/aterrien/jQuery-Knob (Copyright (c) 2012 Anthony Terrien)
+ * Rewrited by Alexander Ulitin
  */
 (function($) {
 
