@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Mission Timer demo</title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+        <script src="js/jquery.mission_timer.js"></script>
+        <script>
+            $(function($) {
+                var $mission_timer = $("#mission_timer");
+                var $title = $("#title");
+                $mission_timer.mission_timer();
+                $(".demo").on("click", function() {
+                    if (!$mission_timer.data('started')) {
+                        $mission_timer.trigger('configure', {
+                            finish : function (value) {
+                                $title.html('Good job! Get the timeout for 10 sec.');
+                                $mission_timer.trigger('configure', {
+                                    timerDuration: 10,
+                                    max: 10,
+                                    finish : function (value) {
+                                        $title.html('Start exercise for 5 sec again!');
+                                        $mission_timer.trigger('configure', {
+                                            timerDuration: 5,
+                                            max: 5,
+                                            finish : function (value) {
+                                                $title.html('Great. Get rest!');
+                                            }
+                                        }).trigger('start');
+                                    }
+                                }).trigger('start');
+                            }
+                        }).trigger('start');
+                        $title.html('Start exercise for 5 seconds!');
+                    }
+                });
+            });
+        </script>
+        <style>
+            body{
+              padding: 0;
+              margin: 0px 50px;
+              font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+              font-weight: 300;
+              text-rendering: optimizelegibility;
+            }
+            p{font-size: 30px; line-height: 30px}
+            div.demo{text-align: center; width: 280px; float: left}
+            div.demo > p{font-size: 20px}
+        </style>
+    </head>
+    <body>
+        <h1 id="title">Click to start</h1>
+        <div style="clear:both"></div>
+        <div class="demo" style="color:#EEE;background:#222;height:420px;width:100%">
+            <div style="position:relative;width:350px;margin:auto">
+                <div style="position:absolute;left:50px;top:50px">
+                    <input id="mission_timer"
+                        data-min="0"
+                        data-max="5"
+                        data-bgColor="#4cb5c8"
+                        data-fgColor="rgba(255, 255, 255, 1)"
+                        data-readOnly=true
+                        data-displayInput=true
+                        data-width="250"
+                        data-height="250"
+                        data-thickness=".1"
+                        data-timerDuration="5">
+                </div>
+            </div>
+        </div>
+        <div style="clear:both"></div>
+    </body>
+</html>
